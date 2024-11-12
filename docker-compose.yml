@@ -1,0 +1,34 @@
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: kitsu
+      POSTGRES_PASSWORD: kitsu
+      POSTGRES_DB: kitsu
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile/web/Dockerfile
+    environment:
+      DATABASE_URL: postgres://kitsu:kitsu@db:5432/kitsu
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile/worker/Dockerfile
+    environment:
+      DATABASE_URL: postgres://kitsu:kitsu@db:5432/kitsu
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:

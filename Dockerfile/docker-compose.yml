@@ -1,0 +1,11 @@
+version: "3"
+services:
+  web:
+    build:
+      context: C:\Kitsu\Dockerfile  # Use the full path to the context
+      dockerfile: C:\Kitsu\Dockerfile\Dockerfile  # Full path to Dockerfile
+
+  worker:
+    build:
+      context: C:\Kitsu\Dockerfile
+      dockerfile: C:\Kitsu\Dockerfile\Dockerfile
