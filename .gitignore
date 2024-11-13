@@ -54,3 +54,5 @@ tests/test-bundle.js
 # Custom
 TODO
 QA
+ghp_*
+github_pat_*
